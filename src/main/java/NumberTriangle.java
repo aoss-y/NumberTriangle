@@ -89,8 +89,23 @@ public class NumberTriangle {
      *
      */
     public int retrieve(String path) {
-        // TODO implement this method
-        return -1;
+        if (path == "") return this.getRoot();
+
+        NumberTriangle pointer = this;
+        for (char c : path.toCharArray()) {
+            switch (Character.toLowerCase(c))  {
+                case 'l':
+                    pointer = pointer.left;
+                    break;
+                case 'r':
+                    pointer = pointer.right;
+                    break;
+                default:
+                    // Invalid input. Shouldn't happen.
+                    continue;
+            }
+        }
+        return pointer.getRoot();
     }
 
     /** Read in the NumberTriangle structure from a file.
